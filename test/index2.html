@@ -12,6 +12,13 @@
         <div>EXAMPLE</div>
     </div>
 <script type="text/javascript">
+    if(!window.external) {
+        alert('window.external not exists');
+    }
+    if(!window.external.basewnd) {
+        alert('window.external.basewnd not exists');
+    }
+    window.external.basewnd.show(200,200);
   alert('example html5');
 </script>
 </body>
