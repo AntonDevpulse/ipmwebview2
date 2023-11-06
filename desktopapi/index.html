@@ -27,7 +27,7 @@ HTML4 as we should support old IE in IPM/IPTN (IE7+)
     -->
     <!--<meta http-equiv="X-UA-Compatible" content="IE=Edge" />-->
     <!--Include desktopApi library-->
-    <script src="./desktop-api.min.js" type="text/javascript"></script>
+    <script src="../dist/desktop-api.min.js" type="text/javascript"></script>
     <!--Include Jquery library if it is your way-->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <title>IPM</title>
@@ -63,7 +63,9 @@ Use it if you really need this
             width              = $('#container').outerWidth(true),
             height             = $('#container').outerHeight(true);
 
-        /*ATTACH EVENTS*/
+          console.log('getDPI: ', window.desktopApi.window.getDPI());
+
+          /*ATTACH EVENTS*/
         /*CLOSE*/
         closeElement.on('click', function (e) {
           e.preventDefault();
