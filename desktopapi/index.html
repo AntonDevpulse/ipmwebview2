@@ -1,0 +1,139 @@
+<!--
+Example to demonstrate how to use JS desktopAPi library
+HTML4 as we should support old IE in IPM/IPTN (IE7+)
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <!--Put this at the very beginning in <head> to suppress browser error popups-->
+    <script type="text/javascript">
+        window.onerror = function() {return true;};
+    </script>
+    <!--Set this for frameless IPM v2.0-->
+    <!-- <script type="text/javascript">
+       function ipmVersion(){
+         return '2.0';
+       }
+       function frameless(){
+         return true;
+       }
+     </script>-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--
+    X-UA-Compatible can be used to force rendering as higher IE compatibility mode as possible
+    Use it on your own risk.
+    https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do#answer-6771584
+    -->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=Edge" />-->
+    <!--Include desktopApi library-->
+    <script src="./desktop-api.min.js" type="text/javascript"></script>
+    <!--Include Jquery library if it is your way-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <title>IPM</title>
+    <style type="text/css">
+        /*
+        * Add some styles or include css file
+        * reset default values
+        */
+        html, body {margin  : 0;padding : 0;}
+    </style>
+</head>
+<!--
+Body attributes can help to disallow context menu, drag and drop, scroll and selection.
+Use it if you really need this
+-->
+<body oncontextmenu="return false;" onselectstart="return false;" onmousewheel="return false;" ondragstart="return false;">
+    <div id="container" class="container">
+        <div id="close" class="close">X</div>
+        <div>
+            <a id="buyNow" class="btn btn--purchase" target="_blank" href="https://secure.reviversoft.com/576/purl-purchase-pc-reviver" onclick="">Buy Now</a>
+            <a id="downloadNow" class="btn btn--download" target="_blank" href="https://www.reviversoft.com/downloads/PCReviverSetup.exe" onclick="">Buy Now</a>
+        </div>
+    </div>
+<script type="text/javascript">
+  //check if desktopApi library loaded
+  if (window.desktopApi !== undefined) {
+    /*Use jquery library here for short demonstration and to not have problems with old IE*/
+    $(function () {
+      try {
+        var closeElement       = $('#close'),
+            buyNowElement      = $('#buyNow'),
+            downloadNowElement = $('#downloadNow'),
+            width              = $('#container').outerWidth(true),
+            height             = $('#container').outerHeight(true);
+
+        /*ATTACH EVENTS*/
+        /*CLOSE*/
+        closeElement.on('click', function (e) {
+          e.preventDefault();
+          window.desktopApi.window.closeWithExitCode(1);
+          //or close
+          //window.desktopApi.window.close();
+        });
+
+        /*OPEN IN DEFAULT BROWSER*/
+        buyNowElement.on('click', function (e) {
+          e.preventDefault();
+          var url = $(this).attr("href");
+          window.desktopApi.utils.openInDefaultBrowser(url);
+        });
+
+        /*DOWNLOAD AND LAUNCH*/
+        downloadNowElement.on('click', function (e) {
+          e.preventDefault();
+          var urlToGo = $(this).attr("href");
+          /* Support old builds/apps that will not work with secureUrl
+        * So pass through both secure and non secure url
+        * desktopApi will decide itself based on build/app engine
+        */
+          urlObject     = {
+            url      : urlToGo,
+            secureUrl: urlToGo
+          };
+          var cmdParams = '';//command line param e.g. 'silent'
+          /*
+        * If you need to control some events provided by downloadAndLaunch
+        * you can create callback instance and pass it through with redefined events;
+        * Supported events: onProgress | onError | onCancelled | onFinished
+        * */
+          var callback = window.desktopApi.downloader.createCallbackInstance();
+
+          callback.onError = function () {
+            //close an app
+            window.desktopApi.window.close();
+          };
+
+          callback.onProgress = function (value) {
+            //do something
+            //console.log(value);
+          };
+          /*
+          * should be wrapped with it's own try catch block
+          * as it is async function and it executed in the main loop
+          * which is outside of the context
+          * */
+          try {
+            var downloadId = window.desktopApi.downloader.downloadAndLaunch(urlObject, cmdParams/*optional, '' by default*/, callback/*optional*/);
+          } catch (error) {
+            //do something or just close an app
+            //window.desktopApi.window.close();
+          }
+          //can be cancelled
+          /*if (downloadId) {
+            window.desktopApi.downloader.cancel(downloadId);
+          }*/
+        });
+
+        /*SHOW PAGE*/
+        window.desktopApi.window.show(width, height);
+
+      } catch(error) {
+        //handle exception error or just close an app
+        window.desktopApi.window.close();
+      }
+    });
+  }
+</script>
+</body>
+</html>
