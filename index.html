@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView2 Interaction Example</title>
+    <style>
+        #container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .WebView2Methods {
+            max-width: 500px;
+        }
+        .method {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+        button {
+            display: inline-block;
+            margin: 5px;
+        }
+        p {
+            display: inline-block;
+            border: 1px solid gray;
+            height: 14px;
+            font-size: 14px;
+            padding: 5px 10px;
+            margin: 5px;
+            min-width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div>EXAMPLE</div>
+<div id="view"></div>
+<script>
+
+
+    window.chrome.webview.hostObjects.basewnd.then((basewnd) => {
+        // Now you can call methods on the hostObject
+        basewnd.show(200, 50).then((result) => {
+            // Handle the result of the method call
+            console.log('Method called successfully:', result);
+            document.getElementById('view').textContent = 'Method called successfully:' + result;
+        }).catch((error) => {
+            // Handle any errors that occur during the method call
+            console.error('Error calling method on host object:', error);
+            document.getElementById('view').textContent = 'Error calling method on host object:' + error;
+        });
+    }).catch((error) => {
+        // Handle any errors that occur while accessing the host object
+        console.error('Error accessing host object:', error);
+        document.getElementById('view').textContent = 'Error accessing host object:' + error;
+    });
+
+
+</script>
+</body>
+</html>
