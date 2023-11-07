@@ -1,27 +1,28 @@
 {
   "files": {
-    "main.js": "./static/js/main.da9d85d4.chunk.js",
-    "main.js.map": "./static/js/main.da9d85d4.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.fcc1f85a.js",
-    "runtime-main.js.map": "./static/js/runtime-main.fcc1f85a.js.map",
-    "static/js/2.0bf37be3.chunk.js": "./static/js/2.0bf37be3.chunk.js",
-    "static/js/2.0bf37be3.chunk.js.map": "./static/js/2.0bf37be3.chunk.js.map",
-    "static/js/3.36d8108a.chunk.js": "./static/js/3.36d8108a.chunk.js",
-    "static/js/3.36d8108a.chunk.js.map": "./static/js/3.36d8108a.chunk.js.map",
+    "main.js": "./static/js/main.cc0a360d.chunk.js",
+    "main.js.map": "./static/js/main.cc0a360d.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.eb559785.js",
+    "runtime-main.js.map": "./static/js/runtime-main.eb559785.js.map",
+    "static/js/2.0d3fa2b1.chunk.js": "./static/js/2.0d3fa2b1.chunk.js",
+    "static/js/2.0d3fa2b1.chunk.js.map": "./static/js/2.0d3fa2b1.chunk.js.map",
+    "static/js/3.7894474f.chunk.js": "./static/js/3.7894474f.chunk.js",
+    "static/js/3.7894474f.chunk.js.map": "./static/js/3.7894474f.chunk.js.map",
     "index.html": "./index.html",
-    "static/js/2.0bf37be3.chunk.js.LICENSE.txt": "./static/js/2.0bf37be3.chunk.js.LICENSE.txt",
+    "static/js/2.0d3fa2b1.chunk.js.LICENSE.txt": "./static/js/2.0d3fa2b1.chunk.js.LICENSE.txt",
     "static/media/check.062c8bc9.svg": "./static/media/check.062c8bc9.svg",
     "static/media/close.b02823dc.svg": "./static/media/close.b02823dc.svg",
     "static/media/cog.5f4ec103.svg": "./static/media/cog.5f4ec103.svg",
     "static/media/logo.924692f6.png": "./static/media/logo.924692f6.png",
+    "static/media/loupe.af5122df.svg": "./static/media/loupe.af5122df.svg",
     "static/media/pc-warning.1be6893b.svg": "./static/media/pc-warning.1be6893b.svg",
     "static/media/search.c2f0852f.svg": "./static/media/search.c2f0852f.svg",
     "static/media/settings.fd940fc8.svg": "./static/media/settings.fd940fc8.svg",
     "static/media/usb-warning.b652efd7.svg": "./static/media/usb-warning.b652efd7.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.fcc1f85a.js",
-    "static/js/2.0bf37be3.chunk.js",
-    "static/js/main.da9d85d4.chunk.js"
+    "static/js/runtime-main.eb559785.js",
+    "static/js/2.0d3fa2b1.chunk.js",
+    "static/js/main.cc0a360d.chunk.js"
   ]
 }
